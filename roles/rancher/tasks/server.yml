@@ -7,8 +7,8 @@
   tags: apt
 
 - name: sanity check on options
-  fail: msg="Please set external db options when running with > 1 server or with use_external_db=true"
-  when: (use_external_db|default(False) or hostvars[inventory_hostname]['groups']['server']|length > 1) and 
+  fail: msg="Please set external db options when setting use_external_db=true"
+  when: (use_external_db|default(False)) and 
         (not db_host or not db_name or not db_user or not db_pass or not db_port )   
 
 - name: create the database (if necessary)
@@ -22,7 +22,7 @@
     state: present 
     login_port: "{{ db_port }}"
   run_once: true
-  when: use_external_db|default(False) or hostvars[inventory_hostname]['groups']['server']|length > 1
+  when: use_external_db|default(False)
   tags: 
     - mysql
 
@@ -38,7 +38,7 @@
     state: present
     priv: "{{ db_name }}.*:ALL"
   run_once: true
-  when: use_external_db|default(False) or hostvars[inventory_hostname]['groups']['server']|length > 1
+  when: use_external_db|default(False)
   tags: 
     - mysql
 

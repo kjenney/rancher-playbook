@@ -1,0 +1,14 @@
+---
+- hosts:
+    - all
+  become: True
+  gather_facts: True
+  vars_files:
+    - vars/default.yml
+  vars:
+    - type: node
+  roles:
+    - { role: rancher, tags: rancher }
+  tags:
+    - rancher
+

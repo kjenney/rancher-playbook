@@ -1,0 +1,16 @@
+---
+
+- name: get public IP
+  ipify_facts:
+  when: not public_ip|default(False)
+
+- include: docker.yml
+  tags: docker
+
+- include: server.yml
+  tags: server
+  when: type == 'server'
+
+- include: node.yml
+  tags: node
+  when: type == 'node'

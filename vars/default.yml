@@ -1,5 +1,5 @@
 # this file can be empty
 docker_version: 18.03
 use_external_db: False
-server_repo: server
-server_version: stable
+server_repo: rancher
+server_version: latest

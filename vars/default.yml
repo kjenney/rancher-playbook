@@ -3,3 +3,4 @@ docker_version: 18.03
 use_external_db: False
 server_repo: rancher
 server_version: latest
+haproxy_enabled: True
